@@ -4,6 +4,7 @@ const fees =[
     "name":"Duy",
     "fee":"rent",
     "amount":"375"
+
   },
   {
     "name":"Duy",
