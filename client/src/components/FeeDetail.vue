@@ -12,8 +12,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <FeeRow v-for="person in roommates" v-bind:key="person.id"
-                            v-if="roommate.name === person.name"
+                    <FeeRow v-for="person in feeList" v-bind:key="person.id"
                             v-bind:person = "person"
                             v-on:isPaid = "updatedPaid"
                         >
@@ -50,11 +49,23 @@
                 let total = 0
                 let name=this.roommate.name
                 this.roommates.forEach(function(i) {
-                    if(i.name === name && !i.paid )
+                    if(i.name === name && !i.paid ) {
                         total += i.amount
+                    }
 
                 })
                 return total
+            },
+            feeList(){
+                let feelist =[]
+                let name=this.roommate.name
+                this.roommates.forEach(function(i) {
+                    if(i.name === name) {
+                        feelist.push(i)
+                    }
+
+                })
+                return feelist
             }
         },
         mounted() {

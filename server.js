@@ -1,8 +1,11 @@
 var express = require('express')
 var bodyParser = require('body-parser')
 var fees_api = require('./routes/fees.js')
+var path = require('path')
 
 var app = express()
+
+app.use(express.static(path.join(__dirname, 'client', 'dist')))
 
 app.use(bodyParser.json())
 

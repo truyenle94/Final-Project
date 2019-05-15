@@ -1,7 +1,7 @@
 <template>
     <div class="roommate-summary p-2 rounded">
         <router-link v-bind:to="{ name: 'detail', params: { roommate: roommate}}">
-            <button id="roommate" class="m-2">{{roommate}}</button>
+            <button id="roommate" class="btn btn-outline-danger">{{roommate}}</button>
         </router-link>
     </div>
 </template>
@@ -21,10 +21,4 @@
 </script>
 
 <style scoped>
-    .roommate-summary {
-        height: 4em;
-        width: 6em;
-        border: 1px #EEE solid;
-        background-color: whitesmoke;
-    }
 </style>
