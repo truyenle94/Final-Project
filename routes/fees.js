@@ -8,7 +8,7 @@ router.get('/fees', function(req, res, next) {
         .then( fees => {
             return res.json(fees)
         })
-        .catch(err  => next(err) )
+        .catch(err  => next.err() )
 })
 
 
@@ -24,7 +24,7 @@ router.patch('/fee/:id', function(req, res, next) {
                 return res.status(404).send()
             }
         })
-        .catch( err => next(err))
+        .catch( err => next.err())
 })
 
 router.post('/fees', function(req, res, next) {
