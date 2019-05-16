@@ -60,7 +60,7 @@
                 let name=this.roommate.name
                 this.roommates.forEach(function(i) {
                     if(i.name === name && !i.paid ) {
-                        total += i.amount
+                        total += Number(i.amount)
                     }
 
                 })
