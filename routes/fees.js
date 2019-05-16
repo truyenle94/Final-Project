@@ -39,4 +39,12 @@ router.post('/fees', function(req, res, next) {
     })
 })
 
+router.delete('/fees/:id', function(req, res, next){
+    Fees.destroy({ where: {id: req.params.id }})
+        .then( () => {
+            return res.send('ok')
+        })
+        .catch( err => next(err))
+})
+
 module.exports = router

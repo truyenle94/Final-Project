@@ -20,5 +20,11 @@ export default {
             return response.data
         })
 
+    },
+
+    deleteFee(id) {
+        return axios.delete('api/fees/'+id).then(response => {
+            return response.data
+        })
     }
 }

@@ -1,6 +1,11 @@
 <template>
     <div class="fee-detail p-2">
         <h1>{{roommate.name}}'s Bills</h1>
+
+        <div class="edit-table-toggle form-check">
+            <input id="edit-table" type="checkbox" class="form-check-input" v-model="editTable">
+            <label for="edit-table" class="form-check-label">Edit table?</label>
+        </div>
         <!--this will use the for loop to select only the one with correponding name-->
         <div>
             <table class="table table-striped">
@@ -9,18 +14,22 @@
                         <th>Fee</th>
                         <th>Amount($)</th>
                         <th>Paid?</th>
+                        <th v-show="editTable">Delete</th>
                     </tr>
                 </thead>
                 <tbody>
                     <FeeRow v-for="person in feeList" v-bind:key="person.id"
                             v-bind:person = "person"
+                            v-bind:edit = "editTable"
                             v-on:isPaid = "updatedPaid"
+                            v-on:delete-fee="feeDeleted"
                         >
                     </FeeRow >
                     <tr>
                         <th>Total</th>
                         <th>{{totalFees}}</th>
                         <th></th>
+                        <th v-show="editTable"></th>
                     </tr>
                 </tbody>
             </table>
@@ -41,7 +50,8 @@
                     name: ''
                 },
                 roommates: [],
-                personPaid: ''
+                personPaid: '',
+                editTable: false
             }
         },
         computed: {
@@ -81,6 +91,11 @@
             getAll() {
                 this.$feeService.getAll().then(data => {
                     this.roommates = data
+                })
+            },
+            feeDeleted(id) {
+                this.$feeService.deleteFee(id).then( () => {
+                    this.getAll()
                 })
             }
         }
